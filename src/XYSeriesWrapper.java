@@ -1,3 +1,4 @@
+import javafx.util.Pair;
 import org.jfree.data.xy.XYSeries;
 
 public class XYSeriesWrapper {

@@ -28,7 +28,7 @@ public abstract class MultiSortTypeOneCriterionChartDescription extends OneChart
         @Override
         public void addWrappers(List<XYSeriesWrapper> list, Sorting s, AllSortsInfo info) {
             list.add(new XYSeriesWrapper(s.getName(),
-                    new SeriesProvider(info, s, SortInfoConverter.BY_CHG)));
+                    new Seri(info, s, SortInfoConverter.BY_CHG)));
         }
     };
 

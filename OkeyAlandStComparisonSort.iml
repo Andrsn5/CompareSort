@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="experimental" level="project" />
     <orderEntry type="library" name="jfree.jfreechart" level="project" />
+    <orderEntry type="library" name="bio.singa.javafx" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="cc587990-d86e-4585-96de-19a1522c6b48" />

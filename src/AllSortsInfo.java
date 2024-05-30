@@ -1,4 +1,6 @@
 import java.util.*;
+import javafx.util.Pair;
+
 
 public class AllSortsInfo {
     private Map<Sorting, List<SortInfo>> data = new HashMap<>();

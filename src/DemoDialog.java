@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import static java.awt.Color.red;
 import static java.awt.SystemColor.info;
 
 public class DemoDialog extends JDialog {
@@ -13,6 +14,7 @@ public class DemoDialog extends JDialog {
     private JButton StartExperiment;
     private JTextField maxSizeTF;
     private JPanel chartArea;
+    private ChartsManager manager;
     private XYSeriesCollection series = new XYSeriesCollection();
 
     public DemoDialog() throws CloneNotSupportedException {
@@ -71,7 +73,7 @@ public class DemoDialog extends JDialog {
 
                    manager.apply(new MultiSortTypeOneCriterionChartDescription(
                            info, "Количество обменов",
-                           MultiSortTypeOneCriterionChartDescription.CHANGES
+                          MultiSortTypeOneCriterionChartDescription.CHANGES
                    ));
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,
