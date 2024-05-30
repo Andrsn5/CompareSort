@@ -1,7 +1,6 @@
 import org.jfree.data.xy.XYSeries;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Experiment {
     private static Integer[] generate(int size) {
@@ -11,15 +10,29 @@ public class Experiment {
         return array;
     }
 
-    public static ExperimentInfo experiment(int maxSize) throws Exception {
-        ExperimentInfo ei = new ExperimentInfo(maxSize);
-        for (int i = 0; i < maxSize; i++) {
-            Integer[] arr = generate(i);
-            ei.setBubbleSortResult(i, SortInfo.bubleSortInfo(Arrays.copyOf(arr,arr.length)));
-            ei.setOtherSortResult(i, SortInfo.shakerSortInfo(arr));
+    public static AllSortsInfo experiment(
+            List<Sorting> sorts, DataGenerator gen,
+            Iterable<Integer> sizes, InfoSmoothing smoothing) throws Exception {
+        AllSortsInfo result = new AllSortsInfo(sorts);
+        for (Integer i : sizes) {
+            if (i < 0)
+                throw new NegativeArraySizeException();
+            Map<Sorting, List<SortInfo>> repeats = new HashMap<>();
+            for (Sorting s : sorts)
+                repeats.put(s, new LinkedList<>());
+            for (int cnt = smoothing.getRepeatTime(); cnt > 0; cnt--) {
+                Integer[] arr = gen.create(i);
+                for (Sorting s : sorts)
+                    repeats.get(s).add(s.sort(Arrays.copyOf(arr, arr.length)));
+            }
+
+            Map<Sorting, SortInfo> item = new HashMap<>();
+            for (Map.Entry<Sorting, List<SortInfo>> kv : repeats.entrySet())
+                item.put(kv.getKey(), smoothing.process(kv.getValue()));
+            result.putData(i, item);
         }
 
-        return ei;
+        return result;
     }
     public static Integer[] cloneIntegerArray(Integer[] arr){
         Integer[] arr2 = new Integer[arr.length];

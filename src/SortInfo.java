@@ -12,7 +12,7 @@ public class SortInfo {
 
         public int getchangeCount() { return changeCount; }
 
-        public long getTinetis() { return timeMs; }
+        public long getTimeMs() { return timeMs; }
 
     public static SortInfo bubleSortInfo(Integer[] arr){
         int cmp=0;
